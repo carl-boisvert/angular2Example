@@ -1,0 +1,13 @@
+<h1>{{team.name}}</h1>
+<div  *ng-if="player">
+    <h2>{{player.name}} details!</h2>
+    <div><label>id: </label>{{player.id}}</div>
+    <div>
+        <label>name: </label>
+        <div><input [(ng-model)]="player.name" placeholder="name"></div>
+    </div>
+</div>
+<h2>Players</h2>
+<div class="players">
+        <p *ng-for="#player of team.players" ><a [router-link]="['/Player', {id: player.number}]"><span class="badge">{{player.number}}</span> {{player.name}}</a></p>
+</div>
