@@ -1,5 +1,5 @@
-$primaryColor: #3E2883;
-$secondaryColor: #BF5F29;
+$primaryColor: #610009;
+$secondaryColor: #FAFAFA;
 $thirdColor: #70AE25;
 
 
@@ -20,5 +20,6 @@ nav#mainNav{
   color: $primaryColor;
   a.btn{
     background-color: $primaryColor;
+    color: $secondaryColor
   }
 }
