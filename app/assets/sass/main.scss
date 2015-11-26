@@ -1,0 +1,24 @@
+$primaryColor: #3E2883;
+$secondaryColor: #BF5F29;
+$thirdColor: #70AE25;
+
+
+nav#mainNav{
+  border-radius: 0px;
+  background-color: $primaryColor;
+  a.navbar-brand{
+    color: $secondaryColor;
+  }
+  li{
+    a{
+      color: $secondaryColor;
+    }
+  }
+}
+.jumbotron{
+  background-color: $secondaryColor;
+  color: $primaryColor;
+  a.btn{
+    background-color: $primaryColor;
+  }
+}

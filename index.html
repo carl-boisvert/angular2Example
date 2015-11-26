@@ -1,17 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Angular 2 QuickStart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="../node_modules/systemjs/dist/system.src.js"></script>
     <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
     <script src="../node_modules/angular2/bundles/router.dev.js"></script>
+    <script src="../node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap-4.0.0-alpha/dist/css/bootstrap.min.css">
+    <script src="bootstrap-4.0.0-alpha/dist/js/bootstrap.min.js"></script>
+    <link href="app/assets/sass/main.css" rel="stylesheet" type="text/css"/>
     <script>
         System.config({
             packages: {'app': {defaultExtension: 'js'}}
         });
-        System.import('app/app');
+        System.import('app/app').catch(console.log.bind(console));
     </script>
 </head>
 <body>
-<my-app>Loading...</my-app>
+    <my-app></my-app>
 </body>
 </html>

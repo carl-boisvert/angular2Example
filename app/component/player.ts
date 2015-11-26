@@ -16,11 +16,12 @@ export class PlayerComponent{
         console.log(params.get('id'));
         var team = new Team("Critical Assets");
         for(var i=0; i<team.players.length; i++){
-            if(team.players[i].number == params.get('id')){
+            if(team.players[i].number == parseInt(params.get('id'))){
                 console.log("FOUND");
                 this.name = team.players[i].name;
                 this.id = team.players[i].number;
             }
+
         }
     }
 }

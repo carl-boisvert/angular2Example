@@ -1,11 +1,9 @@
 export class Player {
     number: number;
     name: string;
-    public constructor(public number : number, name : String){
+    public constructor(number : number, name : string){
         this.number = number;
         this.name = name;
-    }
-    public screamName(){
-        alert(this.name);
+
     }
 }
