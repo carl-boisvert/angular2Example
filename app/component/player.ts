@@ -14,7 +14,12 @@ export class PlayerComponent{
     public id: number;
     public constructor(params: RouteParams){
         console.log(params.get('id'));
-        var team = new Team("Critical Assets");
+        if(params.get('teamId')==1){
+            var team = new Team("CLAS-1");
+        } else if(params.get('teamId')==2){
+            var team = new Team("CLAS-2");
+        }
+
         for(var i=0; i<team.players.length; i++){
             if(team.players[i].number == parseInt(params.get('id'))){
                 console.log("FOUND");

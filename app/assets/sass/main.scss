@@ -23,3 +23,9 @@ nav#mainNav{
     color: $secondaryColor
   }
 }
+
+.label-primary, .btn-primary{
+  background-color: $primaryColor!important;
+  color: $secondaryColor!important;
+  border-color: $secondaryColor!important;
+}
