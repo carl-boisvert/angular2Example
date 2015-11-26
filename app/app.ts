@@ -13,8 +13,9 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 })
 @RouteConfig([
     { path: '/',              as: 'Home',  component: HomeComponent },
-    { path: '/teams',              as: 'Team',  component: TeamComponent },
-    { path: '/player/:id',              as: 'Player',  component: PlayerComponent }
+    { path: '/teams/',              as: 'Teams',  component: TeamComponent },
+    { path: '/team/:id',              as: 'Team',  component: TeamComponent },
+    { path: '/players/:id',              as: 'Player',  component: PlayerComponent }
 ])
 class AppComponent {
 

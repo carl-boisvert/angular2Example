@@ -1,5 +1,5 @@
 import {bootstrap, Component, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
-import { ROUTER_DIRECTIVES, RouteConfig, RouterLink } from 'angular2/router';
+import { ROUTER_DIRECTIVES, RouteConfig, RouterLink, RouteParams} from 'angular2/router';
 import { Team } from "../model/team";
 import { Player } from "../model/player";
 
@@ -11,6 +11,19 @@ import { Player } from "../model/player";
 
 
 export class TeamComponent{
-    public team = new Team("Critical Assets");
+    public team: Team;
     public player: Player;
+    public id: number
+    recruiting: Boolean = false;
+    public constructor(params: RouteParams){
+        console.log(params.get('id'));
+        if(params.get('id') == 1){
+            this.team = new Team("CLAS-1");
+        } else if(params.get('id') == 2){
+            this.team = new Team("CLAS-2");
+        }
+        if(this.team.players.length < 4){
+            this.recruiting = true;
+        }
+    }
 }
