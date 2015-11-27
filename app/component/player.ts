@@ -1,15 +1,18 @@
-import {bootstrap, Component, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
+import {bootstrap, Component, FORM_DIRECTIVES, CORE_DIRECTIVES, Input} from 'angular2/angular2';
 import { ROUTER_DIRECTIVES, RouteConfig, RouteParams } from 'angular2/router';
 import { Team } from "../model/team";
 import { Player } from "../model/player";
+import { SocialComponent } from "./social";
+import { StreamComponent } from "./stream";
 
 @Component({
     selector: 'player',
     templateUrl:'/app/template/player.html',
-    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, CORE_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, FORM_DIRECTIVES, CORE_DIRECTIVES, SocialComponent, StreamComponent]
 })
 
 export class PlayerComponent{
+    @Input() playerId: string;
     public name : String;
     public id: number;
     public constructor(params: RouteParams){

@@ -1,12 +1,32 @@
-<div class="jumbotron">
-    <h1>{{organisation}}</h1>
-    <p class="lead">We're a premium esport organisation. Play for the fun....to win.</p>
-    <hr class="m-y-md">
-    <p>We're always happy to speak with new talents. If you feel like you can bring something to the organisation, hit the button!</p>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" [router-link]="['/Contact']" role="button">I want to try</a>
-    </p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        <h1>{{organisation}}</h1>
+        <p class="lead">We're a premium esport organisation. Play for the fun....to win.</p>
+        <hr class="m-y-md">
+        <p>We're always happy to speak with new talents. If you feel like you can bring something to the organisation, hit the button!</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" [router-link]="['/Contact']" role="button">I want to try</a>
+        </p>
+    </div>
 </div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img class="img-responsive img-rounded center-block" src="http://placehold.it/900x500/" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="img-responsive img-rounded center-block" src="http://placehold.it/900x500/" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="img-responsive img-rounded center-block" src="http://placehold.it/900x500/" alt="Third slide">
+            </div>
+        </div>
+    </div>
 <div class="row">
     <teams></teams>
 </div>

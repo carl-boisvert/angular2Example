@@ -1,6 +1,7 @@
 import {Player} from "./player"
 import {Http} from 'angular2/http';
 import {Injectable} from 'angular2/angular2';
+import {Server} from './server/server';
 
 @Injectable()
 
@@ -21,12 +22,12 @@ export class Team {
         } else if(name=="CLAS-2"){
             this.id = 2;
             this.players =  [
-                new Player(20,"Owlsome"),
+                new Player(11,"Owlsome"),
                 new Player(9,"Akaangel69"),
                 new Player(18,"Akinzee")
             ];
         }
-        //http.get("http://test.local/test.json").map(res => res.json()).subscribe(players => this.players = players);
+        Server.getPlayer();
     }
 
 }
