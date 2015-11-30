@@ -7,7 +7,7 @@ import { TeamsComponent } from "./component/teams";
 import {NavComponent} from "./component/nav"
 import { ROUTER_DIRECTIVES, RouteConfig,ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
-import {Server} from './model/server/server';
+import {ServerService} from './model/server/server';
 
 @Component({
     selector: 'my-app',
@@ -26,10 +26,10 @@ class AppComponent {
 }
 
 bootstrap(AppComponent,[
+    ServerService,
     HTTP_PROVIDERS,
     ROUTER_PROVIDERS,
-    bind(LocationStrategy).toClass(HashLocationStrategy),
-    Server
+    bind(LocationStrategy).toClass(HashLocationStrategy)
 ]).then(
         success => console.log('AppComponent bootstrapped!'),
         error => console.log(error)

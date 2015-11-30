@@ -4,6 +4,7 @@ import { Team } from "../model/team";
 import { Player } from "../model/player";
 import { SocialComponent } from "./social";
 import { StreamComponent } from "./stream";
+import {ServerService} from '../model/server/server';
 
 @Component({
     selector: 'player',
@@ -15,12 +16,13 @@ export class PlayerComponent{
     @Input() playerId: string;
     public name : String;
     public id: number;
-    public constructor(params: RouteParams){
+    public constructor(params: RouteParams, server: ServerService){
+        console.log(server);
         console.log(params.get('id'));
         if(params.get('teamId')==1){
-            var team = new Team("CLAS-1");
+            var team = new Team("CLAS-1",server);
         } else if(params.get('teamId')==2){
-            var team = new Team("CLAS-2");
+            var team = new Team("CLAS-2",server);
         }
 
         for(var i=0; i<team.players.length; i++){
