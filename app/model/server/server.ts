@@ -5,15 +5,13 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 
 export class ServerService{
     private http: Http;
-    private players;
+    private return;
     public constructor(http: Http){
         this.http = http;
-        console.log(http);
     }
 
     public getPlayer(){
-        var players = this.http.get("http://test.local/test.json").map(res => res.json()).subscribe(players => this.players = players);
-        console.log("PLAYERS");
-        return this.players;
+        var observer =  this.http.get("http://test.local/test.json").map(res => res.json());
+        return observer.toPromise();
     }
 }

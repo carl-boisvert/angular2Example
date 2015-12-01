@@ -17,15 +17,10 @@ export class TeamComponent{
     public id: number
     recruiting: Boolean = false;
     public constructor(params: RouteParams,server: ServerService){
-        console.log(params.get('id'));
-        console.log(server);
         if(params.get('id') == 1){
             this.team = new Team("CLAS-1", server);
         } else if(params.get('id') == 2){
             this.team = new Team("CLAS-2", server);
-        }
-        if(this.team.players.length < 4){
-            this.recruiting = true;
         }
     }
 }

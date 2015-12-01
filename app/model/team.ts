@@ -11,22 +11,18 @@ export class Team {
         this.name = name;
         if(name=="CLAS-1"){
             this.id = 1;
-            this.players = server.getPlayer(); /*[
-                new Player(7,"Amnesiaguy"),
-                new Player(13,"Pleonator"),
-                new Player(15,"Chico"),
-                new Player(17,"Raf")
-            ];*/
+            var promise = server.getPlayer();
+            promise.then((result) => {return Promise.resolve(console.log(this.players = result[this.id]))});
         } else if(name=="CLAS-2"){
             this.id = 2;
-            this.players =  [
-                new Player(11,"Owlsome"),
-                new Player(9,"Akaangel69"),
-                new Player(18,"Akinzee")
-            ];
+            var promise = server.getPlayer();
+            promise.then((result) => {return Promise.resolve(console.log(this.players = result[this.id]))});
         }
-        console.log(server);
-        server.getPlayer();
+    }
+
+    setPlayers(players){
+        console.log(this.players);
+        this.players = players.players;
     }
 
 }
