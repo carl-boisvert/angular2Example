@@ -4,6 +4,7 @@ import {HomeComponent} from "./component/home"
 import {PlayerComponent} from "./component/player"
 import {ContactComponent} from "./component/contact"
 import { TeamsComponent } from "./component/teams";
+import { LoginComponent } from "./component/login";
 import {NavComponent} from "./component/nav"
 import { ROUTER_DIRECTIVES, RouteConfig,ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
@@ -19,7 +20,8 @@ import {ServerService} from './model/server/server';
     { path: '/contact',              as: 'Contact',  component: ContactComponent },
     { path: '/teams/',              as: 'Teams',  component: TeamsComponent },
     { path: '/team/:id',              as: 'Team',  component: TeamComponent },
-    { path: '/player/:teamId/:id',              as: 'Player',  component: PlayerComponent }
+    { path: '/player/:teamId/:id',              as: 'Player',  component: PlayerComponent },
+    { path: '/login',              as: 'Login',  component: LoginComponent }
 ])
 class AppComponent {
 
