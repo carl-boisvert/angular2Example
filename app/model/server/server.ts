@@ -11,7 +11,6 @@ export class ServerService{
     }
 
     public getPlayer(){
-        var observer =  this.http.get("http://test.local/test.json").map(res => res.json());
-        return observer.toPromise();
+        return this.http.get("http://test.local/test.json").map(res => res.json());
     }
 }

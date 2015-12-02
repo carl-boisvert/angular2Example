@@ -17,21 +17,14 @@ export class PlayerComponent{
     public name : String;
     public id: number;
     public constructor(params: RouteParams, server: ServerService){
-        console.log(server);
-        console.log(params.get('id'));
-        if(params.get('teamId')==1){
-            var team = new Team("CLAS-1",server);
-        } else if(params.get('teamId')==2){
-            var team = new Team("CLAS-2",server);
-        }
-
-        for(var i=0; i<team.players.length; i++){
-            if(team.players[i].number == parseInt(params.get('id'))){
-                console.log("FOUND");
-                this.name = team.players[i].name;
-                this.id = team.players[i].number;
+        var observable = server.getPlayer();
+        observable.subscribe(players => {
+            for(var i=0; i<players[params.get("teamId")].length; i++){
+                if(players[params.get("teamId")][i].number == parseInt(params.get('id'))){
+                    this.name = players[params.get("teamId")][i].name;
+                    this.id = players[params.get("teamId")][i].number;
+                }
             }
-
-        }
+        });
     }
 }

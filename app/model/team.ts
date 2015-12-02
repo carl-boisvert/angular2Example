@@ -11,18 +11,16 @@ export class Team {
         this.name = name;
         if(name=="CLAS-1"){
             this.id = 1;
-            var promise = server.getPlayer();
-            promise.then((result) => {return Promise.resolve(console.log(this.players = result[this.id]))});
+            var observable = server.getPlayer();
+            observable.subscribe(players => {this.players = players[this.id]});
         } else if(name=="CLAS-2"){
             this.id = 2;
-            var promise = server.getPlayer();
-            promise.then((result) => {return Promise.resolve(console.log(this.players = result[this.id]))});
+            var observable = server.getPlayer();
+            observable.subscribe(players => {this.players = players[this.id]});
         }
     }
 
-    setPlayers(players){
-        console.log(this.players);
-        this.players = players.players;
+    getPlayer(players){
+       return this.players;
     }
-
 }
