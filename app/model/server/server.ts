@@ -4,10 +4,15 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 @Injectable()
 
 export class ServerService{
+    private baseUrl = "http://esportmontreal.local"
     private http: Http;
     private return;
     public constructor(http: Http){
         this.http = http;
+    }
+
+    public login(email,password){
+        console.log(email);
     }
 
     public getPlayer(){

@@ -1,5 +1,6 @@
 import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, FormBuilder, Validators, ControlGroup, Control} from "angular2/angular2"
 import {RouterLink} from 'angular2/router';
+import {ServerService} from '../model/server/server';
 
 @Component({
     selector:"login",
@@ -9,15 +10,19 @@ import {RouterLink} from 'angular2/router';
 
 export class LoginComponent{
     login: ControlGroup;
+    server: ServerService
 
-    constructor(fb: FormBuilder) {
+    constructor(fb: FormBuilder, server: ServerService) {
         this.login = fb.group({
             email: ["", Validators.required],
             password: ["", Validators.required]
         });
+        this.server = server;
     }
 
     onSubmit(value) {
-        console.log('you submitted value: ', value);
+        if(this.login.valid){
+            this.server.login(value["email"],value["password"]);
+        }
     }
 }
