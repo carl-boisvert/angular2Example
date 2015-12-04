@@ -1,4 +1,4 @@
-import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, Control,ControlGroup,ControlArray,Validators} from "angular2/angular2"
+import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, FormBuilder, Validators, ControlGroup, Control} from "angular2/angular2"
 import {RouterLink} from 'angular2/router';
 
 @Component({
@@ -8,8 +8,14 @@ import {RouterLink} from 'angular2/router';
 })
 
 export class LoginComponent{
-    email = new Control("",Validators.required)
-    password = new Control("",Validators.required)
+    login: ControlGroup;
+
+    constructor(fb: FormBuilder) {
+        this.login = fb.group({
+            email: ["", Validators.required],
+            password: ["", Validators.required]
+        });
+    }
 
     onSubmit(value) {
         console.log('you submitted value: ', value);

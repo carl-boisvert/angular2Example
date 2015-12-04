@@ -1,16 +1,15 @@
-<form class="m-t" novalidate #f="form" (submit)="onSubmit(f.value)">
+<form class="m-t" novalidate [ng-form-model]="login" (submit)="onSubmit(login.value)">
     <fieldset class="form-group row">
         <label class="col-xs-12" for="email">Email</label>
         <div class="col-xs-2">
-            <input type="email" ng-control="email" class="form-control" id="email" placeholder="Enter your email" >
-            <div *ng-if="!email.valid"
-                 class="bg-warning">Email is invalid</div>
+            <input type="email" [ng-form-control]="login.controls['email']" class="form-control" id="email" placeholder="Enter your email" >
+            <div *ng-if="!login.controls['email'].valid && !login.controls['email'].pristine" class="bg-warning">Email is required</div>
         </div>
     </fieldset>
     <fieldset class="form-group row">
         <label class="col-xs-12" for="password">Password</label>
         <div class="col-xs-2">
-            <input type="password" ng-control="password" class="form-control col-sm-10 col-md-4" id="password" placeholder="Enter your password">
+            <input type="password" [ng-form-control]="login.controls['password']" class="form-control col-sm-10 col-md-4" id="password" placeholder="Enter your password">
         </div>
     </fieldset>
     <button type="submit" class="btn btn-primary">Sign in</button>
