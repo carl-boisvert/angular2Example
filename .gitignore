@@ -1,7 +1,15 @@
 .idea/
 node_modules/
-*.js
-*.js.map
+app/*.js
+app/*.js.map
+app/ts/*.js
+app/component/*.js
+app/model/*.js
+app/model/server/*.js
+app/model/server/*.js.map
+app/component/*.js.map
+app/ts/*.js.map
+app/model/*.js.map
 *.css
 .sass-cache
 *.css.map
