@@ -1,11 +1,12 @@
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
-var DbManager;
+var DbManager = {};
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : ''
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASS,
+    multipleStatements: true
 });
 
 var db = connection.connect();
