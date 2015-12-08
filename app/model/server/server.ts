@@ -4,7 +4,7 @@ import {HTTP_PROVIDERS, Http} from 'angular2/http';
 @Injectable()
 
 export class ServerService{
-    private baseUrl = "http://esportmontreal.local"
+    private baseUrl = "http://localhost:3000/"
     private http: Http;
     private return;
     public constructor(http: Http){
@@ -15,7 +15,15 @@ export class ServerService{
         console.log(email);
     }
 
-    public getPlayer(){
-        return this.http.get("http://test.local/test.json").map(res => res.json());
+    public getTeams(){
+        return this.http.get(this.baseUrl+'teams/').map(res => res.json());
+    }
+
+    public getTeam(id: string){
+        return this.http.get(this.baseUrl+'teams/'+id).map(res => res.json());
+    }
+
+    public getPlayer(id: string){
+        return this.http.get(this.baseUrl+'players/'+id).map(res => res.json());
     }
 }

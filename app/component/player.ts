@@ -17,14 +17,10 @@ export class PlayerComponent{
     public name : String;
     public id: number;
     public constructor(params: RouteParams, server: ServerService){
-        var observable = server.getPlayer();
-        observable.subscribe(players => {
-            for(var i=0; i<players[params.get("teamId")].length; i++){
-                if(players[params.get("teamId")][i].number == parseInt(params.get('id'))){
-                    this.name = players[params.get("teamId")][i].name;
-                    this.id = players[params.get("teamId")][i].number;
-                }
-            }
+        var observable = server.getPlayer(params.get('id'));
+        observable.subscribe(response => {
+            this.name = response.player.name;
+            this.id = response.player.number;
         });
     }
 }

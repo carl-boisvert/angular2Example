@@ -13,14 +13,12 @@ import {ServerService} from "../model/server/server"
 
 export class TeamComponent{
     public team: Team;
-    public player: Player[];
     public id: number
     recruiting: Boolean = false;
     public constructor(params: RouteParams,server: ServerService){
-        if(params.get('id') == 1){
-            this.team = new Team("CLAS-1", server);
-        } else if(params.get('id') == 2){
-            this.team = new Team("CLAS-2", server);
-        }
+        var observable = server.getTeam(params.get('id'));
+        observable.subscribe(response=>{
+            this.team = response.team
+        });
     }
 }
