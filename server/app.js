@@ -1,9 +1,11 @@
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 
 var routes = require('./routes/index');
 var teams = require('./routes/teams');
@@ -24,7 +26,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 
 app.use('/', routes);
 app.use('/teams', teams);
