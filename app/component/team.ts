@@ -19,6 +19,9 @@ export class TeamComponent{
         var observable = server.getTeam(params.get('id'));
         observable.subscribe(response=>{
             this.team = response.team
+            if(this.team.Players.length < 4){
+                this.recruiting = true;
+            }
         });
     }
 }

@@ -17,6 +17,11 @@ module.exports = function(sequelize, DataTypes) {
     },{
         tableName: 'players',
         timestamps: false,
+        classMethods: {
+            associate: function(models) {
+                Player.belongsTo(models.Team);
+            }
+        }
     });
     return Player;
 }

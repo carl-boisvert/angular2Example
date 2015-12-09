@@ -20,7 +20,7 @@ import {ServerService} from './model/server/server';
     { path: '/contact',              as: 'Contact',  component: ContactComponent },
     { path: '/teams/',              as: 'Teams',  component: TeamsComponent },
     { path: '/team/:id',              as: 'Team',  component: TeamComponent },
-    { path: '/player/:teamId/:id',              as: 'Player',  component: PlayerComponent },
+    { path: '/player/:id',              as: 'Player',  component: PlayerComponent },
     { path: '/login',              as: 'Login',  component: LoginComponent }
 ])
 class AppComponent {

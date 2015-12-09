@@ -2,7 +2,7 @@
         <h1>{{ team.name }}</h1>
         <h2>Players</h2>
         <div class="players">
-                <p  *ng-for="#player of team.players" ><a [router-link]="['/Player', {id: player.number}]"><span class="label label-primary">{{player.number}}</span> {{player.name}}</a></p>
+                <p  *ng-for="#player of team.Players" ><a [router-link]="['/Player', {id: player.id}]"><span class="label label-primary">{{player.number}}</span> {{player.gamertag}}</a></p>
         </div>
         <div *ng-if="recruiting">
                 <a class="btn btn-primary btn-md" href="#" role="button">We're recruiting</a>

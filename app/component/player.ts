@@ -14,13 +14,15 @@ import {ServerService} from '../model/server/server';
 
 export class PlayerComponent{
     @Input() playerId: string;
-    public name : String;
+    public gamertag : String;
+    public number: number;
     public id: number;
     public constructor(params: RouteParams, server: ServerService){
         var observable = server.getPlayer(params.get('id'));
         observable.subscribe(response => {
-            this.name = response.player.name;
-            this.id = response.player.number;
+            this.gamertag = response.player.gamertag;
+            this.number = response.player.number;
+            this.id = response.player.id;
         });
     }
 }

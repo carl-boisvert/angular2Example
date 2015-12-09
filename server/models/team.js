@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         }
     },{
-        tableName: 'players',
+        tableName: 'teams',
         timestamps: false,
         classMethods: {
             associate: function(models) {
