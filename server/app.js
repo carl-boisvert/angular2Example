@@ -5,12 +5,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Sequelize = require('sequelize');
 
+// Models definitions
 var routes = require('./routes/index');
 var teams = require('./routes/teams');
 var players = require('./routes/players');
 
 var app = express();
+
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -46,6 +50,7 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.log("ERROR");
     console.log(err);
+    console.error(err.stack);
     res.status(err.status || 500);
     res.json({
       message: err.message,
