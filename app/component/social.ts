@@ -1,4 +1,4 @@
-import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
+import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, Input} from 'angular2/angular2';
 
 @Component({
     selector: 'social',
@@ -7,5 +7,9 @@ import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
 })
 
 export class SocialComponent{
+    @Input() urls: Object;
 
+    constructor(){
+
+    }
 }

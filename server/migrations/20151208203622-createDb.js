@@ -10,7 +10,11 @@ exports.up = function(db, callback) {
       number: 'int',
       email: 'string',
       password: 'string',
-      teamId: 'int'
+      teamId: 'int',
+      facebook: 'string',
+      twitter: 'string',
+      youtube: 'string',
+      twitch: 'string'
     }),
     db.createTable.bind(db, "teams",{
       id: { type: 'int', primaryKey: true, autoIncrement: true },
@@ -22,7 +26,7 @@ exports.up = function(db, callback) {
     }),
     db.insert.bind(db,"teams",["name"],["Critical assets"]),
     db.insert.bind(db,"teams",["name"],["Critical elements"]),
-    db.insert.bind(db,"players",["gamertag", "number", "teamId"],["amnesiaguy", 7,1]),
+    db.insert.bind(db,"players",["gamertag", "number", "teamId","facebook","twitter","youtube","twitch"],["amnesiaguy", 7,1,"https://www.facebook.com/carl.boisvert.10","https://twitter.com/Carlboisvert","https://www.youtube.com/channel/UCIkEZzzSKVBOVKQqj4C_8UA","http://www.twitch.tv/cboisvert"]),
     db.insert.bind(db,"players",["gamertag", "number", "teamId"],["pleonator", 13,1]),
     db.insert.bind(db,"players",["gamertag", "number", "teamId"],["chico", 15,1]),
     db.insert.bind(db,"players",["gamertag", "number", "teamId"],["Raf", 17,1]),

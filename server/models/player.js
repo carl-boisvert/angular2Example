@@ -12,8 +12,27 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         },
         number: DataTypes.INTEGER,
-        email: DataTypes.STRING,
-        password: DataTypes.STRING
+        email:{
+            type: DataTypes.STRING,
+            unique: true
+        },
+        password: DataTypes.STRING,
+        facebook: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        twitter: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        youtube: {
+            type: DataTypes.STRING,
+            unique: true
+        },
+        twitch: {
+            type: DataTypes.STRING,
+            unique: true
+        }
     },{
         tableName: 'players',
         timestamps: false,

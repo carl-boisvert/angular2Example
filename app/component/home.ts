@@ -11,5 +11,5 @@ import { ROUTER_DIRECTIVES, RouteConfig, RouterLink } from 'angular2/router';
 })
 
 export class HomeComponent{
-    public organisation : "Critical Assets";
+    public organisation : string = "Critical Assets";
 }

@@ -7,7 +7,24 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 
-// Models definitions
+var sequelize = new Sequelize('database', 'username', 'password', {
+  host     : process.env.DB_HOST,
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASS,
+  multipleStatements: true,
+  dialect: 'mysql',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  },
+
+  // SQLite only
+  storage: 'path/to/database.sqlite'
+});
+
+// Models degini
 var routes = require('./routes/index');
 var teams = require('./routes/teams');
 var players = require('./routes/players');
@@ -49,8 +66,6 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.log("ERROR");
-    console.log(err);
-    console.error(err.stack);
     res.status(err.status || 500);
     res.json({
       message: err.message,

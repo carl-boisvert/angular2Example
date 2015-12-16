@@ -11,6 +11,7 @@ router.get('/:id', function(req, res, next) {
         res.json({player:player});
     }).catch(function(error) {
         console.log('oh no', error);
+        console.log('oh no', error.stack);
     });
 });
 

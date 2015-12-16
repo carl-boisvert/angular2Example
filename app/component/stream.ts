@@ -8,11 +8,9 @@ import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, Input} from 'angular2/angul
 
 
 export class StreamComponent{
-    @Input()
-    playerId: string;
-    streamUrl: string = "http://player.twitch.tv/?volume=1&channel=snappydue";
+    @Input() streamUrl: string;
 
     public getSteamUrl(){
-        return this.streamUrl
+        return this.streamUrl;
     }
 }

@@ -1,4 +1,8 @@
-<h1>{{gamertag}}</h1>
-<p>This player number is {{number}}</p>
-<social></social>
-<stream (playerId)="id"></stream>
+<div *ng-if="loaded">
+    <h1>{{gamertag}}</h1>
+    <p>This player number is {{number}}</p>
+
+    <social [urls]="social"></social>
+    <stream [stream-url]="social.twitch"></stream>
+</div>
+

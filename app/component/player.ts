@@ -13,16 +13,26 @@ import {ServerService} from '../model/server/server';
 })
 
 export class PlayerComponent{
-    @Input() playerId: string;
     public gamertag : String;
     public number: number;
     public id: number;
+    public social: Object;
+    public loaded: Boolean = false;
+
     public constructor(params: RouteParams, server: ServerService){
         var observable = server.getPlayer(params.get('id'));
         observable.subscribe(response => {
             this.gamertag = response.player.gamertag;
             this.number = response.player.number;
             this.id = response.player.id;
+            this.social = {
+                facebook: response.player.facebook,
+                twitter: response.player.twitter,
+                youtube: response.player.youtube,
+                twitch: response.player.twitch
+            };
+            console.dir(this.social);
+            this.loaded = true;
         });
     }
 }
