@@ -2,7 +2,7 @@
     <h1>{{gamertag}}</h1>
     <p>This player number is {{number}}</p>
 
-    <social [urls]="social"></social>
-    <stream [stream-url]="social.twitch"></stream>
+    <social *ng-if="social" [urls]="social"></social>
+    <stream *ng-if="social" *ng-if="social.twitch" [stream-url]="social.twitch"></stream>
 </div>
 

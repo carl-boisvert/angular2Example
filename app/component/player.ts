@@ -25,13 +25,19 @@ export class PlayerComponent{
             this.gamertag = response.player.gamertag;
             this.number = response.player.number;
             this.id = response.player.id;
-            this.social = {
-                facebook: response.player.facebook,
-                twitter: response.player.twitter,
-                youtube: response.player.youtube,
-                twitch: response.player.twitch
-            };
-            console.dir(this.social);
+            if(response.player.facebook != null
+                || response.player.twitter != null
+                || response.player.youtube != null
+                || response.player.twitch != null
+            ){
+                this.social = {
+                    facebook: response.player.facebook,
+                    twitter: response.player.twitter,
+                    youtube: response.player.youtube,
+                    twitch: response.player.twitch
+                };
+                console.dir(this.social);
+            }
             this.loaded = true;
         });
     }
