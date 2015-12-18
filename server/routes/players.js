@@ -15,4 +15,21 @@ router.get('/:id', function(req, res, next) {
     });
 });
 
+router.post('/', function(req, res, next) {
+    var player = new models.Player.build({
+        gamertag:gamertag,
+        password: password
+    });
+
+    var promise = models.Player.create(req.params.id,{
+        include: [models.Team]
+    }).then(function(player) {
+        console.log(player);
+        res.json({player:player});
+    }).catch(function(error) {
+        console.log('oh no', error);
+        console.log('oh no', error.stack);
+    });
+});
+
 module.exports = router;

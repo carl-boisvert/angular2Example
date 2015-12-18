@@ -10,6 +10,7 @@ exports.up = function(db, callback) {
       number: 'int',
       email: 'string',
       password: 'string',
+      salt: 'string',
       teamId: 'int',
       facebook: 'string',
       twitter: 'string',

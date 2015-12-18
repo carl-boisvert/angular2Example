@@ -1,4 +1,5 @@
 "use strict";
+var bcrypt = require('bcrypt');
 
 module.exports = function(sequelize, DataTypes) {
     var Player = sequelize.define('Player',{
@@ -17,6 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             unique: true
         },
         password: DataTypes.STRING,
+        salt: DataTypes.STRING,
         facebook: {
             type: DataTypes.STRING,
             unique: true
@@ -32,13 +34,23 @@ module.exports = function(sequelize, DataTypes) {
         twitch: {
             type: DataTypes.STRING,
             unique: true
-        }
+        },
     },{
         tableName: 'players',
         timestamps: false,
         classMethods: {
             associate: function(models) {
                 Player.belongsTo(models.Team);
+            }
+        },
+        instanceMethods: {
+            createPassword: function(password){
+                this.salt = bcrypt.genSaltSync(10);
+                this.password = bcrypt.hashSync(password, this.salt);
+            },
+            validPassword: function (password) {
+                password = bcrypt.hashSync(password, this.salt);
+                bcrypt.compareSync(password, this.password);
             }
         }
     });

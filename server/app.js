@@ -6,6 +6,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var passport = require('passport');
+var models = require('./models');
+LocalStrategy = require('passport-local').Strategy;
 
 var sequelize = new Sequelize('database', 'username', 'password', {
   host     : process.env.DB_HOST,
@@ -31,8 +34,6 @@ var players = require('./routes/players');
 
 var app = express();
 
-
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -41,11 +42,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.post('/login',
+    passport.authenticate('local'),
+    function(req, res) {
+      // If this function gets called, authentication was successful.
+      // `req.user` contains the authenticated user.
+      res.redirect('/users/' + req.user.username);
+    });
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      models.Player.findOne({ where: {gamertag: username }}).then(function (user) {
+        console.log(user);
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+        return done(null, user);
+      }).catch(function(err) {
+        console.log(err);
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+      });
+    }
+));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 
 app.use('/', routes);
 app.use('/teams', teams);
@@ -58,6 +86,8 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+
 
 // error handlers
 
