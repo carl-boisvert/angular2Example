@@ -2,7 +2,7 @@
     <div *ng-for="#team of teams" class="col-sm-12 col-md-4 col-md-offset-1">
         <div class="card">
             <img class="card-img-top img-responsive img-rounded center-block" src="http://placehold.it/583x300" alt="Card image cap">
-            <div class="card card-block">
+            <div class="card-block">
                 <h3 class="card-title">{{team.name}}</h3>
                 <a [router-link]="['/Team', {id: team.id}]" class="btn btn-primary">See players</a>
             </div>
