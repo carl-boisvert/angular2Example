@@ -6,16 +6,16 @@ exports.up = function(db, callback) {
   async.series([
     db.createTable.bind(db, "players",{
       id: { type: 'int', primaryKey: true, autoIncrement: true },
-      gamertag: 'string',
+      gamertag: { type: 'string', unique: true},
       number: 'int',
       email: 'string',
       password: 'string',
       salt: 'string',
       teamId: 'int',
-      facebook: 'string',
-      twitter: 'string',
-      youtube: 'string',
-      twitch: 'string'
+      facebook: { type: 'string', unique: true},
+      twitter: { type: 'string', unique: true},
+      youtube: { type: 'string', unique: true},
+      twitch: { type: 'string', unique: true},
     }),
     db.createTable.bind(db, "teams",{
       id: { type: 'int', primaryKey: true, autoIncrement: true },

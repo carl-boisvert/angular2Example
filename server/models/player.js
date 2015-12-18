@@ -44,14 +44,14 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         instanceMethods: {
-            createPassword: function(password){
-                this.salt = bcrypt.genSaltSync(10);
-                this.password = bcrypt.hashSync(password, this.salt);
-            },
             validPassword: function (password) {
                 password = bcrypt.hashSync(password, this.salt);
                 bcrypt.compareSync(password, this.password);
-            }
+            },
+            createPassword: function(password){
+                this.salt = bcrypt.genSaltSync();
+                this.password = bcrypt.hashSync(password, this.salt);
+            },
         }
     });
     return Player;

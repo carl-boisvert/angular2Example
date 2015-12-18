@@ -16,19 +16,24 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var player = new models.Player.build({
-        gamertag:gamertag,
-        password: password
+    var player = models.Player.build({
+        gamertag:req.body.gamertag
     });
 
-    var promise = models.Player.create(req.params.id,{
-        include: [models.Team]
-    }).then(function(player) {
-        console.log(player);
-        res.json({player:player});
+    player.createPassword(req.body.password);
+    player.save().then(function(anotherTask) {
+        res.json({
+            success:1
+        });
     }).catch(function(error) {
-        console.log('oh no', error);
-        console.log('oh no', error.stack);
+        var errors = {};
+        for(var i = 0; i <error.errors.length; i++){
+            errors[i] = error.errors[i].message;
+        }
+        res.json({
+            success: 0,
+            errors:errors
+        });
     });
 });
 
