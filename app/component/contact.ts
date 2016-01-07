@@ -23,6 +23,8 @@ export class ContactComponent{
         if(this.contact.valid){
             var observable = this.server.sendEmailContact(value["email"],value["message"]);
             observable.subscribe(response=>{
+                this.contact.controls["email"].updateValue("");
+                this.contact.controls['message'].updateValue("");
             });
         }
     }
