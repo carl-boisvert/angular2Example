@@ -26,4 +26,9 @@ export class ServerService{
     public getPlayer(id: string){
         return this.http.get(this.baseUrl+'players/'+id).map(res => res.json());
     }
+
+    public sendEmailContact(email: string, message: string){
+        var body = "email=" + email + "&message=" + message;
+        return this.http.post(this.baseUrl+'',body).map(res => res.json());
+    }
 }

@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var passport = require('passport');
 var models = require('./models');
-LocalStrategy = require('passport-local').Strategy;
+var JwtStrategy = require('passport-jwt').Strategy;
 
 var sequelize = new Sequelize('database', 'username', 'password', {
   host     : process.env.DB_HOST,
@@ -31,6 +31,7 @@ var sequelize = new Sequelize('database', 'username', 'password', {
 var routes = require('./routes/index');
 var teams = require('./routes/teams');
 var players = require('./routes/players');
+var notifications = require('./routes/notifications');
 
 var app = express();
 
@@ -40,23 +41,31 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/login',
-    passport.authenticate('local'),
+    passport.authenticate('jwt',{session:false}),
     function(req, res) {
       // If this function gets called, authentication was successful.
       // `req.user` contains the authenticated user.
       res.redirect('/users/' + req.user.username);
     });
 
-passport.use(new LocalStrategy(
-    function(username, password, done) {
+
+var opts = {}
+opts.secretOrKey = 'secret';
+opts.issuer = "accounts.examplesoft.com";
+opts.audience = "yoursite.net";
+passport.use(new JwtStrategy(
+    opts,
+    function(jwt_payload, done) {
+      console.log(jwt_payload);
       models.Player.findOne({ where: {gamertag: username }}).then(function (user) {
-        console.log(user);
         if (!user.validPassword(password)) {
           return done(null, false, { message: 'Incorrect password.' });
         }
+        console.log("LOGGEDIN");
         return done(null, user);
       }).catch(function(err) {
         console.log(err);
@@ -78,6 +87,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/teams', teams);
 app.use('/players', players);
+app.use('/notifications',notifications);
 
 
 // catch 404 and forward to error handler
