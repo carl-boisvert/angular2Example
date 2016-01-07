@@ -29,6 +29,6 @@ export class ServerService{
 
     public sendEmailContact(email: string, message: string){
         var body = "email=" + email + "&message=" + message;
-        return this.http.post(this.baseUrl+'',body).map(res => res.json());
+        return this.http.post(this.baseUrl+'notifications/contact',body).map(res => res.json());
     }
 }
