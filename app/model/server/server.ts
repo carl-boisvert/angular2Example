@@ -1,5 +1,5 @@
 import {Component, FORM_DIRECTIVES, CORE_DIRECTIVES, Injectable} from 'angular2/angular2';
-import {HTTP_PROVIDERS, Http} from 'angular2/http';
+import {HTTP_PROVIDERS, Http, Headers} from 'angular2/http';
 
 @Injectable()
 
@@ -28,7 +28,11 @@ export class ServerService{
     }
 
     public sendEmailContact(email: string, message: string){
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var body = "email=" + email + "&message=" + message;
-        return this.http.post(this.baseUrl+'notifications/contact',body).map(res => res.json());
+        return this.http.post(this.baseUrl+'notifications/contact',body,{
+            headers: headers
+        }).map(res => res.json());
     }
 }

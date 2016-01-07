@@ -20,11 +20,9 @@ export class ContactComponent{
     }
 
     public sendMessage(value){
-        console.log(value);
         if(this.contact.valid){
             var observable = this.server.sendEmailContact(value["email"],value["message"]);
             observable.subscribe(response=>{
-                console.log(response);
             });
         }
     }
